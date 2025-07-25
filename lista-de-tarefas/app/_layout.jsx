@@ -1,83 +1,100 @@
-import { ScrollView, View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
-
+import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { colors } from '../constants/colors';
 export default function TabLayout() {
   return (
-    <ScrollView style={styles.container}>
-      <Image
-        source={{ uri: 'https://cdn-icons-png.flaticon.com/512/845/845646.png' }}
-        style={styles.logo}
-      />
-      <Text style={styles.title}>Minhas Tarefas</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Adicionar nova tarefa"
+
+    <ScrollView style={style.mainContainer}>
+
+
+      <View style={style.textContainer}>
+        <Image
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/845/845646.png' }}
+          style={style.image}
         />
-        <Button title="+" onPress={() => {}} />
+        <Text style={style.title}>Minhas Tarefas</Text>
       </View>
-      <View style={styles.list}>
-        <View style={styles.item}>
-          <Text style={styles.itemText}>Comprar pão</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.itemText}>Estudar React Native</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.itemText}>Fazer exercícios</Text>
-        </View>
+      <View style={style.rowContainer}>
+        <TextInput
+          style={style.inputTask}
+        />
+        <Pressable
+          onPress={() => Alert.alert('Task added!')}
+          style={style.button}
+        >
+          <Text style={style.buttonText}>+</Text>
+        </Pressable>
       </View>
     </ScrollView>
-  );
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
+const style = StyleSheet.create({
+  mainContainer: {
+    // flex: 1,
+    backgroundColor: colors.secondary,
     padding: 20,
-    backgroundColor: '#f6f6f6',
+    paddingTop: 50,
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
-  logo: {
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+    padding: 10,
+
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // width: '100%', // Add this to ensure it takes full width
+    padding: 20,
+    maxWidth: 220, // Adjust as needed for your layout
+    
+    // margin: 20,
+  },
+  image: {
     width: 50,
     height: 50,
-    alignSelf: 'center',
-    marginVertical: 20,
+    marginRight: 10,
   },
-  title: {
+  title:{
+    border: 1,
+    padding: 10,
     fontSize: 24,
     fontWeight: 'bold',
-    alignSelf: 'center',
-    marginBottom: 20,
-    color: '#333',
+    textAlign: 'center',
+    color: colors.primary,
+    // flexShrink: 1,
+    // flexWrap: 'wrap', // Allow text to wrap
+    // maxWidth: 220,    // Adjust as needed for your layout
   },
-  inputContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-    alignItems: 'center',
-  },
-  input: {
-    flex: 1,
+
+  inputTask: {
     height: 40,
-    borderColor: '#bbb',
+    borderColor: 'gray',
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 20,
     paddingHorizontal: 10,
-    marginRight: 10,
-    backgroundColor: '#fff',
+
+    margin: 20,
+    flexGrow: 1
   },
-  list: {
-    marginTop: 10,
+  button: {
+    width: 40,
+    height: 40,
+    backgroundColor: colors.primary,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
   },
-  item: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 8,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+  buttonText: {
+    color: 'white',
+    fontSize: 24,
   },
-  itemText: {
-    fontSize: 16,
-    color:'#444',
-  },
-});
+
+})
