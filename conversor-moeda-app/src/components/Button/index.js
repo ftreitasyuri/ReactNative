@@ -1,10 +1,17 @@
-import { Text, Touchable, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { styles } from "./styles.js";
 
 export default function Button(){
     return(
-        <TouchableOpacity>
-            <Text>
-
+        <TouchableOpacity
+            style={styles.button}
+        >
+            <Text
+               style={
+                styles.buttonText
+            }
+            >
+                Converter
             </Text>
         </TouchableOpacity>
     )
